@@ -34,7 +34,7 @@
     <img src="image1.jpg" width="1920" height="1080"  class="hero-image">
     <div class="covertext">
 	<br><br>
-	<center><h2>StudyConnect: A Study Group Finder for Students</h2></center>s</div>
+	<center><h2>StudyConnect: A Study Group Finder for Students</h2></center></div>
   </div>
 </section>
 

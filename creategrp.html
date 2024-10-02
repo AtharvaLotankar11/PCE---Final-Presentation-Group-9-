@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Study Group</title>
   <link rel="stylesheet" href="createstyles.css">
+  <style>
+        /* Internal CSS for the message box */
+        .message-box {
+            display: none; /* Initially hide the message box */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;   
+
+            z-index: 9999; /* Ensure it appears above other elements */
+        }
+        .message-box .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
   <header>
@@ -53,12 +75,62 @@
         <input type="datetime-local" id="meetingtime" name="meetingtime" required>
       </div>
       <center><button type="submit">Create Group</button></center>
+	<div class="message-box" id="success-message">
+                <h2>Study Group Created Successfully!</h2>
+                <p>Your group details are:</p>
+                <ul>
+                    <li><strong>Group Name:</strong> <span id="registered-groupname"></span></li>
+                    <li><strong>Course:</strong> <span id="registered-course"></span></li>
+                    <li><strong>Subject:</strong> <span id="registered-subject"></span></li>
+                    <li><strong>Description:</strong> <span id="registered-description"></span></li>
+                    <li><strong>Meeting Time:</strong> <span id="registered-meetingtime"></span></li>
+                </ul>
+                <button class="close-button">Close</button>
+            </div>
     </form>
   </section>
 
   <footer>
     <p align = "center">&copy; StudyConnect 2024</p>
   </footer>
+
+<script>
+        const createGroupForm = document.querySelector('form');
+        const successMessage = document.getElementById('success-message');
+        const registeredGroupname = document.getElementById('registered-groupname');
+        const registeredCourse = document.getElementById('registered-course');
+        const registeredSubject = document.getElementById('registered-subject');
+        const registeredDescription = document.getElementById('registered-description');
+        const registeredMeetingtime = document.getElementById('registered-meetingtime');
+
+        createGroupForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            const groupname = document.getElementById('groupname').value;
+            const course = document.getElementById('course').value;
+            const subject = document.getElementById('subject').value;
+            const description = document.getElementById('description').value;
+            const   
+ meetingtime = document.getElementById('meetingtime').value;
+
+            // Update message box content
+            registeredGroupname.textContent = groupname;
+            registeredCourse.textContent = course;
+            registeredSubject.textContent = subject;
+            registeredDescription.textContent = description;
+            registeredMeetingtime.textContent = meetingtime;
+
+            // Show message box
+            successMessage.style.display = 'block';
+        });
+
+        const closeButton = document.querySelector('.close-button');
+        closeButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default action
+            successMessage.style.display = 'none';
+        });
+    </script>
 
 </body>
 </html>

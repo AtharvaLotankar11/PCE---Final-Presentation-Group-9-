@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome To StudyConnect</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+        /* Internal CSS for the message box */
+        .message-box {
+            display: none; /* Initially hide the message box */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;  
+	    
+            z-index: 9999; /* Ensure it appears above other elements */
+        }
+        .message-box .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            margin-bottom: 10px; 
+        }
+    </style>
 </head>
 <body>
   <header>
@@ -71,12 +94,55 @@
         <input type="text" id="grade" name="grade" required>
       </div>
       <center><button type="submit">Register</button></center>
+	<div class="message-box" id="success-message">
+                <h2>Thank you for registering!</h2>
+                <p>Your registration details are:</p>
+                <ul>
+                    <li><strong>Full Name:</strong> <span id="registered-fullname"></span></li>
+                    <li><strong>Username:</strong> <span id="registered-username"></span></li>
+                    <li><strong>Grade/Year:</strong> <span id="registered-grade"></span></li>
+                </ul><br>
+                <center><button class="close-button">Close</button></center>
+            </div>
     </form>
   </section>
 
   <footer>
     <center>&copy; StudyConnect 2024</center>
   </footer>
+
+  <script>
+        const registerForm = document.querySelector('form');
+        const successMessage = document.getElementById('success-message');
+        const registeredFullname = document.getElementById('registered-fullname');
+        const registeredUsername = document.getElementById('registered-username');
+        const registeredGrade = document.getElementById('registered-grade');
+
+        registerForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            const fullname = document.getElementById('fullname').value;
+            const   
+ username = document.getElementById('username').value;
+            const grade = document.getElementById('grade').value;
+
+            // Update message box content
+            registeredFullname.textContent = fullname;
+            registeredUsername.textContent = username;
+            registeredGrade.textContent = grade;
+
+            // Show message box
+            successMessage.style.display = 'block';
+        });
+
+        const closeButton = document.querySelector('.close-button');
+        closeButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default action
+            successMessage.style.display = 'none';
+        });
+    </script>
+
 
 </body>
 </html>

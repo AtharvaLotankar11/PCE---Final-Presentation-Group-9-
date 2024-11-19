@@ -7,7 +7,6 @@ body {
 }
 
 header {
-  position: fixed;
   background-color: rgba(0, 51, 102, 0.8); /* Dark blue with transparency */
   padding: 10px 0;
 }

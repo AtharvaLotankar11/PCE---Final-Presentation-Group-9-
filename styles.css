@@ -38,6 +38,8 @@ nav {
 }
 
 nav ul li {
+  list-style: none;
+  display-flex;
   background-color: #34495e; /* Darker blue */
   border-radius: 5px;
   padding: 5px 10px;
